@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3ia8y2sfekco"]
+
+[ext_resource type="Script" path="res://Scripts/Spitter.cs" id="1_iwj05"]
+[ext_resource type="Texture2D" uid="uid://jihyxyyubxb1" path="res://2Q.png" id="2_aptah"]
+[ext_resource type="PackedScene" uid="uid://k0y8wxew3ou1" path="res://Assets/Game Objects/projectile.tscn" id="2_sfvvn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lu8f5"]
+size = Vector2(64, 64)
+
+[node name="Spitter" type="StaticBody2D"]
+collision_layer = 0
+script = ExtResource("1_iwj05")
+sdprojectile = ExtResource("2_sfvvn")
+
+[node name="ProjectileSpawn" type="Node2D" parent="."]
+position = Vector2(64, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_aptah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lu8f5")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="On_Timer_Timeout"]

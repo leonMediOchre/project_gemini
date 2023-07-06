@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhwosnw8ey3up"]
+
+[ext_resource type="Script" path="res://Scripts/SceneDoor.cs" id="1_n5b4e"]
+[ext_resource type="Texture2D" uid="uid://8a8cey0l2qrq" path="res://Assets/Sprites/icon.svg" id="2_ktiyn"]
+[ext_resource type="Script" path="res://Scripts/Interactable.cs" id="3_y7y4k"]
+[ext_resource type="PackedScene" uid="uid://ggmfdb7xsdl3" path="res://Assets/Game Objects/interact_indicator.tscn" id="4_74a6i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2jbn"]
+size = Vector2(64, 128)
+
+[node name="SceneDoor" type="Node2D"]
+script = ExtResource("1_n5b4e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_ktiyn")
+
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("3_y7y4k")
+
+[node name="InteractIndicator" parent="." instance=ExtResource("4_74a6i")]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_t2jbn")
+
+[connection signal="body_entered" from="Area2D" to="Interactable" method="On_Body_Entered"]

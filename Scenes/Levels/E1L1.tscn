@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://3kyh1yev5hol"]
+
+[ext_resource type="TileSet" uid="uid://bhe707pxaj1w4" path="res://Assets/Tile Sets/dirt_tile_set.tres" id="1_yomml"]
+[ext_resource type="PackedScene" uid="uid://cc1koixdsxtnu" path="res://Assets/Game Objects/toggle_block.tscn" id="2_u1xiv"]
+[ext_resource type="PackedScene" uid="uid://6qbfbcha0j4i" path="res://Assets/Game Objects/lever.tscn" id="3_v77m5"]
+[ext_resource type="Script" path="res://Scripts/ToggleGroup.cs" id="4_kksu1"]
+[ext_resource type="PackedScene" uid="uid://vy0ri666xi58" path="res://Assets/Game Objects/player.tscn" id="4_xnc3h"]
+[ext_resource type="PackedScene" uid="uid://bhwosnw8ey3up" path="res://Assets/Game Objects/scene_door.tscn" id="6_l11sx"]
+[ext_resource type="PackedScene" uid="uid://b3qs65e8yswp1" path="res://Scenes/test_scene.tscn" id="7_gmbk1"]
+[ext_resource type="PackedScene" uid="uid://b3ia8y2sfekco" path="res://Assets/Game Objects/spitter.tscn" id="8_0dtf2"]
+[ext_resource type="PackedScene" uid="uid://dmqo4kap7eh5r" path="res://Assets/Game Objects/pause_menu.tscn" id="9_74x2i"]
+
+[node name="E1L1" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(1.5, 1.5)
+
+[node name="PauseMenu" parent="Camera2D" instance=ExtResource("9_74x2i")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_yomml")
+format = 2
+layer_0/tile_data = PackedInt32Array(458757, 65537, 0, 524293, 65537, 2, 458758, 65537, 0, 524294, 65537, 2, 458759, 65537, 0, 524295, 65537, 2, 458760, 65537, 0, 524296, 65537, 2, 458761, 65537, 0, 524297, 65537, 2, 458762, 65537, 0, 524298, 65537, 2, 458763, 65537, 0, 524299, 65537, 2, 458764, 65537, 0, 524300, 65537, 2, 196621, 65537, 0, 458765, 1, 2, 524301, 65537, 2, 262158, 65537, 1, 327694, 1, 1, 393230, 1, 1, 458766, 65537, 2, 524302, 65537, 1, 262159, 131073, 1, 327695, 131073, 1, 393231, 131073, 1, 458767, 65537, 2, 524303, 65537, 1, 196613, 1, 0, 589829, 65537, 1, 196614, 65537, 0, 589830, 65537, 1, 196615, 65537, 0, 589831, 65537, 1, 196616, 65537, 0, 589832, 65537, 1, 196617, 65537, 0, 589833, 65537, 1, 196618, 65537, 0, 589834, 65537, 1, 196619, 65537, 0, 589835, 65537, 1, 196620, 65537, 0, 589836, 65537, 1, 262157, 1, 2, 589837, 65537, 1, 589838, 65537, 1, 589839, 65537, 1, 458768, 65537, 2, 458769, 131073, 2, 458770, 1, 1, 524305, 65537, 1, 524304, 65537, 1, 524306, 65537, 1, 196627, 1, 1, 262163, 1, 1, 327699, 1, 1, 393235, 1, 1, 458771, 1, 1, 589840, 65537, 1, 589841, 65537, 1, 589842, 65537, 1, 524307, 131073, 1, 589843, 65537, 1, 458753, 65537, 0, 524289, 65537, 1, 589825, 65537, 1, 524290, 65537, 1, 589826, 65537, 1, 524291, 65537, 1, 589827, 65537, 1, 524292, 65537, 1, 589828, 65537, 1, 458754, 65537, 0, 458755, 65537, 0, 458756, 65537, 0, 65535, 1, 2, 131071, 1, 2, 196607, 1, 2, 262143, 1, 2, 327679, 1, 2, 393215, 1, 2, 458751, 1, 2, 524287, 1, 2, 589823, 1, 2, 655359, 1, 2, 458752, 65537, 0, 589824, 65537, 1, 524288, 131073, 1, 196612, 65537, 0, 196611, 65537, 0, 196610, 65537, 0, 196609, 1, 0, 196622, 65537, 0, 196623, 131073, 0)
+
+[node name="Player" parent="." instance=ExtResource("4_xnc3h")]
+position = Vector2(160, 392)
+
+[node name="Player2" parent="." instance=ExtResource("4_xnc3h")]
+position = Vector2(160, 152)
+
+[node name="Lever" parent="." instance=ExtResource("3_v77m5")]
+position = Vector2(608, 160)
+
+[node name="Lever2" parent="." instance=ExtResource("3_v77m5")]
+position = Vector2(609, 416)
+
+[node name="ToggleGroup1" type="Node2D" parent="."]
+script = ExtResource("4_kksu1")
+metadata/_edit_group_ = true
+
+[node name="ToggleBlock" parent="ToggleGroup1" instance=ExtResource("2_u1xiv")]
+position = Vector2(864, 160)
+
+[node name="ToggleBlock2" parent="ToggleGroup1" instance=ExtResource("2_u1xiv")]
+position = Vector2(864, 96)
+
+[node name="ToggleBlock3" parent="ToggleGroup1" instance=ExtResource("2_u1xiv")]
+position = Vector2(864, 32)
+
+[node name="ToggleGroup2" type="Node2D" parent="."]
+script = ExtResource("4_kksu1")
+
+[node name="ToggleBlock4" parent="ToggleGroup2" instance=ExtResource("2_u1xiv")]
+position = Vector2(352, 416)
+
+[node name="ToggleBlock5" parent="ToggleGroup2" instance=ExtResource("2_u1xiv")]
+position = Vector2(352, 352)
+
+[node name="ToggleBlock6" parent="ToggleGroup2" instance=ExtResource("2_u1xiv")]
+position = Vector2(352, 288)
+
+[node name="SceneDoor" parent="." instance=ExtResource("6_l11sx")]
+position = Vector2(1120, 384)
+scene = ExtResource("7_gmbk1")
+
+[node name="Spitter" parent="." instance=ExtResource("8_0dtf2")]
+position = Vector2(48, 672)
+
+[connection signal="Toggle" from="Lever" to="ToggleGroup2" method="On_Toggle"]
+[connection signal="Toggle" from="Lever2" to="ToggleGroup1" method="On_Toggle"]

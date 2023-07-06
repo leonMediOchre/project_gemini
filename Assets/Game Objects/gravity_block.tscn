@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d16wanx6xcvlr"]
+
+[ext_resource type="Script" path="res://Scripts/GravityBody.cs" id="1_54qye"]
+[ext_resource type="Texture2D" uid="uid://d2sovci0k6pk1" path="res://Assets/Sprites/dirtgrass_texture_01.png" id="2_tftsy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msqs2"]
+size = Vector2(64, 64)
+
+[node name="GravityBlock" type="CharacterBody2D"]
+position = Vector2(433, 420)
+collision_layer = 2
+script = ExtResource("1_54qye")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tftsy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_msqs2")

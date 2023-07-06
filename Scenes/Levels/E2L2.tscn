@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://52obrs1uj1s5"]
+
+[ext_resource type="TileSet" uid="uid://bhe707pxaj1w4" path="res://Assets/Tile Sets/dirt_tile_set.tres" id="1_ljd38"]
+[ext_resource type="PackedScene" uid="uid://dmqo4kap7eh5r" path="res://Assets/Game Objects/pause_menu.tscn" id="2_6oe6r"]
+[ext_resource type="PackedScene" uid="uid://disub2ccpxsy8" path="res://Assets/Game Objects/pressure_plate.tscn" id="3_0kcgv"]
+[ext_resource type="PackedScene" uid="uid://da8v2thb3qwim" path="res://Assets/Game Objects/gravity_switch_vertical.tscn" id="4_0ekyv"]
+[ext_resource type="PackedScene" uid="uid://6qbfbcha0j4i" path="res://Assets/Game Objects/lever.tscn" id="5_j6fgt"]
+[ext_resource type="PackedScene" uid="uid://vy0ri666xi58" path="res://Assets/Game Objects/player.tscn" id="6_u460r"]
+[ext_resource type="Script" path="res://Scripts/ToggleGroup.cs" id="7_whlig"]
+[ext_resource type="PackedScene" uid="uid://cc1koixdsxtnu" path="res://Assets/Game Objects/toggle_block.tscn" id="8_d24he"]
+
+[node name="E2L2" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(1.5, 1.5)
+
+[node name="PauseMenu" parent="Camera2D" instance=ExtResource("2_6oe6r")]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_ljd38")
+format = 2
+layer_0/tile_data = PackedInt32Array(327680, 65537, 1, 327681, 65537, 1, 327682, 65537, 1, 327683, 65537, 1, 393219, 65537, 1, 393220, 65537, 1, 393221, 65537, 1, 393222, 65537, 1, 393223, 65537, 1, 393224, 65537, 1, 393225, 65537, 1, 393226, 65537, 1, 393227, 65537, 1, 262147, 65537, 1, 262150, 65537, 1, 262151, 65537, 1, 262152, 65537, 1, 262153, 65537, 1, 262154, 65537, 1, 5, 65537, 1, 6, 65537, 1, 7, 65537, 1, 8, 65537, 1, 9, 65537, 1, 10, 65537, 1, 11, 65537, 1, 2, 65537, 1, 3, 65537, 1, 4, 65537, 1, 0, 65537, 1, 1, 65537, 1, 655360, 65537, 1, 655361, 65537, 1, 655362, 65537, 1, 655363, 65537, 1, 655364, 65537, 1, 655365, 65537, 1, 655366, 65537, 1, 655367, 65537, 1, 655368, 65537, 1, 655369, 65537, 1, 655370, 65537, 1, 655371, 65537, 1, 65535, 65537, 1, 131071, 65537, 1, 196607, 65537, 1, 262143, 65537, 1, 327679, 65537, 1, 393215, 65537, 1, 458751, 65537, 1, 524287, 65537, 1, 589823, 65537, 1, 655359, 65537, 1, 720895, 65537, 1, 262155, 65537, 1, 262156, 65537, 1, 196620, 65537, 1, 131084, 65537, 1, 65548, 65537, 1, 12, 65537, 1, 14, 65537, 1, 65550, 65537, 1, 131086, 65537, 1, 196622, 65537, 1, 262158, 65537, 1, 327694, 65537, 1, 393230, 65537, 1, 458766, 65537, 1, 524302, 65537, 1, 655374, 65537, 1, 589838, 65537, 1, 393228, 65537, 1, 524300, 65537, 1, 589836, 65537, 1, 655372, 65537, 1)
+
+[node name="Player" parent="." instance=ExtResource("6_u460r")]
+position = Vector2(48, 272)
+
+[node name="Player2" parent="." instance=ExtResource("6_u460r")]
+position = Vector2(40, 432)
+
+[node name="Interactables" type="Node" parent="."]
+
+[node name="Toggles" type="Node" parent="Interactables"]
+
+[node name="Lever" parent="Interactables/Toggles" instance=ExtResource("5_j6fgt")]
+position = Vector2(320, 96)
+rotation = -3.14159
+
+[node name="PressurePlate2" parent="Interactables/Toggles" instance=ExtResource("3_0kcgv")]
+position = Vector2(320, 448)
+rotation = 3.14159
+
+[node name="PressurePlate" parent="Interactables/Toggles" instance=ExtResource("3_0kcgv")]
+position = Vector2(672, 448)
+rotation = -3.14159
+
+[node name="GravitySwitchVertical2" parent="Interactables" instance=ExtResource("4_0ekyv")]
+position = Vector2(544, 576)
+flipY = true
+
+[node name="GravitySwitchVertical" parent="Interactables" instance=ExtResource("4_0ekyv")]
+position = Vector2(160, 256)
+flipY = true
+
+[node name="Toggleables" type="Node" parent="."]
+
+[node name="ToggleGroup1" type="Node2D" parent="Toggleables"]
+position = Vector2(64, 0)
+script = ExtResource("7_whlig")
+
+[node name="ToggleBlock" parent="Toggleables/ToggleGroup1" instance=ExtResource("8_d24he")]
+position = Vector2(352, 480)
+
+[node name="ToggleBlock2" parent="Toggleables/ToggleGroup1" instance=ExtResource("8_d24he")]
+position = Vector2(352, 544)
+
+[node name="ToggleBlock3" parent="Toggleables/ToggleGroup1" instance=ExtResource("8_d24he")]
+position = Vector2(352, 608)
+
+[node name="ToggleGroup2" type="Node2D" parent="Toggleables"]
+script = ExtResource("7_whlig")
+
+[node name="ToggleBlock" parent="Toggleables/ToggleGroup2" instance=ExtResource("8_d24he")]
+position = Vector2(288, 288)
+
+[node name="ToggleBlock2" parent="Toggleables/ToggleGroup2" instance=ExtResource("8_d24he")]
+position = Vector2(352, 288)
+
+[node name="ToggleBlock3" parent="Toggleables" instance=ExtResource("8_d24he")]
+position = Vector2(608, 352)
+
+[connection signal="Toggle" from="Interactables/Toggles/Lever" to="Toggleables/ToggleGroup1" method="On_Toggle"]
+[connection signal="Toggle" from="Interactables/Toggles/PressurePlate2" to="Toggleables/ToggleGroup2" method="On_Toggle"]
+[connection signal="Toggle" from="Interactables/Toggles/PressurePlate" to="Toggleables/ToggleBlock3" method="On_Toggle"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://6qbfbcha0j4i"]
+
+[ext_resource type="Texture2D" uid="uid://bgsk7hjvcssbl" path="res://Assets/Sprites/Lever.png" id="1_on0nr"]
+[ext_resource type="Script" path="res://Scripts/Lever.cs" id="2_gbdtk"]
+[ext_resource type="Script" path="res://Scripts/Interactable.cs" id="3_f8vro"]
+[ext_resource type="PackedScene" uid="uid://ggmfdb7xsdl3" path="res://Assets/Game Objects/interact_indicator.tscn" id="4_ocanj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfdyl"]
+
+[node name="Lever" type="Sprite2D"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_on0nr")
+script = ExtResource("2_gbdtk")
+metadata/_edit_group_ = true
+
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("3_f8vro")
+
+[node name="InteractIndicator" parent="." instance=ExtResource("4_ocanj")]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_vfdyl")
+
+[connection signal="body_entered" from="Area2D" to="Interactable" method="On_Body_Entered"]
+[connection signal="body_exited" from="Area2D" to="Interactable" method="On_Body_Exited"]

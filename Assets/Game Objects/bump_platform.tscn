@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://qi0poefyxbbo"]
+
+[ext_resource type="Script" path="res://Scenes/BumpPlatform.cs" id="1_djmu5"]
+[ext_resource type="Texture2D" uid="uid://cfw3613ocu2xr" path="res://Assets/Sprites/dirtgrass_texture_full.png" id="2_ooe6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj6dk"]
+size = Vector2(188, 36)
+
+[node name="BumpPlatform" type="CharacterBody2D"]
+script = ExtResource("1_djmu5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 0.192708)
+texture = ExtResource("2_ooe6f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_sj6dk")

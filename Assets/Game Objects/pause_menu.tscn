@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmqo4kap7eh5r"]
+
+[ext_resource type="Script" path="res://Scripts/PauseMenu.cs" id="1_4vhiv"]
+
+[node name="PauseMenu" type="PanelContainer"]
+process_mode = 3
+visible = false
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -48.0
+offset_right = 35.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+script = ExtResource("1_4vhiv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "PAUSED"
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="On_Resume_Button_Pressed"]

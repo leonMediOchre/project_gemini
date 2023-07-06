@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://fhfhu0blmk3j"]
+
+[ext_resource type="Texture2D" uid="uid://ce6t1wrwpk16e" path="res://Assets/Sprites/InteractIcon.png" id="1_maykk"]
+[ext_resource type="Script" path="res://Scripts/Portal.cs" id="1_mckni"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bl6i1"]
+radius = 23.0
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_mckni")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(3, 5)
+texture = ExtResource("1_maykk")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1, 1.5)
+shape = SubResource("CircleShape2D_bl6i1")
+
+[connection signal="body_entered" from="Area2D" to="." method="On_Body_Entered"]

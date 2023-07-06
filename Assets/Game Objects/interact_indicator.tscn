@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ggmfdb7xsdl3"]
+
+[ext_resource type="Texture2D" uid="uid://ce6t1wrwpk16e" path="res://Assets/Sprites/InteractIcon.png" id="1_xtep2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u342l"]
+font_size = 43
+
+[node name="InteractIndicator" type="Sprite2D"]
+visible = false
+position = Vector2(0, -13.25)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_xtep2")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.1667
+offset_top = -18.0
+offset_right = 12.8333
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+size_flags_horizontal = 4
+text = "e"
+label_settings = SubResource("LabelSettings_u342l")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

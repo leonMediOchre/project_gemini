@@ -1,0 +1,78 @@
+[gd_scene load_steps=14 format=3 uid="uid://k0y8wxew3ou1"]
+
+[ext_resource type="Script" path="res://Scripts/Projectile.cs" id="1_5h7f4"]
+[ext_resource type="Texture2D" uid="uid://jihyxyyubxb1" path="res://2Q.png" id="1_6aiwc"]
+[ext_resource type="Shader" uid="uid://b12tb657ui0k4" path="res://Assets/Game Objects/projectile.tres" id="2_en1io"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5emh0"]
+shader = ExtResource("2_en1io")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3j4a"]
+size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gc2t"]
+shader = ExtResource("2_en1io")
+
+[sub_resource type="Curve" id="Curve_45qik"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 6.54547), 0.0, 0.0, 0, 0, Vector2(1, 176.727), 324.8, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vritp"]
+curve = SubResource("Curve_45qik")
+
+[sub_resource type="Gradient" id="Gradient_t0v1d"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hbyps"]
+gradient = SubResource("Gradient_t0v1d")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_sob0m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.891626, 0.327273), -1.7771, -1.7771, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7skh2"]
+curve = SubResource("Curve_sob0m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mqqd3"]
+emission_shape = 3
+emission_box_extents = Vector3(20, 20, 1)
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 17.52
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 10.0
+angle_curve = SubResource("CurveTexture_vritp")
+scale_min = 0.03
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_7skh2")
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_hbyps")
+turbulence_enabled = true
+
+[node name="Projectile" type="AnimatableBody2D"]
+collision_layer = 4
+collision_mask = 7
+sync_to_physics = false
+script = ExtResource("1_5h7f4")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5emh0")
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("1_6aiwc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w3j4a")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_2gc2t")
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_mqqd3")
+texture = ExtResource("1_6aiwc")
+lifetime = 2.0

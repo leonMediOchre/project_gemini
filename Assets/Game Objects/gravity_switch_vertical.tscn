@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://da8v2thb3qwim"]
+
+[ext_resource type="Texture2D" uid="uid://chweubyk32ryh" path="res://Assets/Sprites/GravityFlipVertical.png" id="1_13ovf"]
+[ext_resource type="Script" path="res://Scripts/GravitySwitch.cs" id="2_itx0u"]
+[ext_resource type="Script" path="res://Scripts/Interactable.cs" id="3_nwyrl"]
+[ext_resource type="PackedScene" uid="uid://ggmfdb7xsdl3" path="res://Assets/Game Objects/interact_indicator.tscn" id="4_uvqys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0fbi"]
+size = Vector2(54, 101)
+
+[node name="GravitySwitchVertical" type="Sprite2D"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_13ovf")
+script = ExtResource("2_itx0u")
+metadata/_edit_group_ = true
+
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("3_nwyrl")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.25, 0.25)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_b0fbi")
+
+[node name="InteractIndicator" parent="." instance=ExtResource("4_uvqys")]
+
+[connection signal="body_entered" from="Area2D" to="Interactable" method="On_Body_Entered"]
+[connection signal="body_exited" from="Area2D" to="Interactable" method="On_Body_Exited"]
